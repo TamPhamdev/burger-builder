@@ -7,7 +7,7 @@ const buildControl = props => (
     <button
       className={classes.Less}
       onClick={props.reduced}
-      disabled={props.disabled}
+      disabled={props.disabled} //disable button when quantity <= 0
     >
       Less
     </button>
