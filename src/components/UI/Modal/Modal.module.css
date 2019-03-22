@@ -8,6 +8,7 @@
   padding: 16px;
   left: 15%;
   top: 20%;
+  display: none;
   box-sizing: border-box;
   transition: all 0.4s ease-out;
 }
