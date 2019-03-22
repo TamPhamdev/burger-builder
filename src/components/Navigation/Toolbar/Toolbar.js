@@ -3,6 +3,7 @@ import classes from './Toolbar.module.css';
 import Logo from '../../Logo/Logo';
 import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle';
 import NavigationItems from '../NavigationItems/NavigationItems';
+
 const Toolbar = (props) => (
   <header className={classes.Toolbar}>
   <DrawerToggle clicked={props.drawerToggleClicked}/>
