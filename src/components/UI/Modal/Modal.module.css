@@ -9,6 +9,7 @@
   left: 15%;
   top: 20%;
   display: none;
+  text-align: center;
   box-sizing: border-box;
   transition: all 0.4s ease-out;
 }

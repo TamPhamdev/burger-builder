@@ -5,18 +5,17 @@ import Backdrop from '../Backdrop/Backdrop';
 
 
 class Modal extends Component {
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   if(nextProps.show !== this.props.show || nextState !== this.state) {
-  //     return true; //check update OrderSummary when Modal only show
-  //   }
-  // }
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextProps.show !== this.props.show || nextProps.children !== this.props.children;
+    //check update OrderSummary when Modal only show
+  }
   render () {
     return (
     <Aux>
       <Backdrop show={this.props.show} clicked={this.props.backdropClicked}/>
         <div className={classes.Modal}
           style={{transform: this.props.show ? 'translateY(0)' : 'translateY:(-100vh)',
-            //opacity: props.show ? '1' : '0',
+            // opacity: this.props.show ? '1' : '0',
             display: this.props.show ? 'block' : 'none'
         }}
         >
