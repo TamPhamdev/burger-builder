@@ -5,11 +5,11 @@ import Backdrop from '../Backdrop/Backdrop';
 
 
 class Modal extends Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    if(nextProps.show !== this.props.show) {
-      return true; //check update OrderSummary when Modal only show
-    }
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   if(nextProps.show !== this.props.show || nextState !== this.state) {
+  //     return true; //check update OrderSummary when Modal only show
+  //   }
+  // }
   render () {
     return (
     <Aux>
