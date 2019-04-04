@@ -24,6 +24,7 @@ class BurgerBuilder extends Component {
     error: false
   };
   componentDidMount () {
+    console.log({...this.props});
     axios.get('https://react-my-burger-2970d.firebaseio.com/ingredient.json') // nhớ thêm json để lưu database -> ko sẽ lỗi CORS
     .then(res => {this.setState({ingredient:res.data})})
     .catch(error => {
@@ -85,25 +86,17 @@ class BurgerBuilder extends Component {
   };
 
   purchaseContinueHandler = () => {
-    this.setState({loading: true});
-    const order = {
-      ingredients: this.state.ingredient,
-      totalPrice: this.state.totalPrice,
-      customer: {
-        name: "Tam",
-        address: {
-          street: "Somewhere street",
-          zipCode: "424234",
-          country: "Viet Nam"
-        },
-        email: "test@gmail.com"
-      },
-      deliveryMethod: "fastest"
-    };
-    axios
-      .post("/orders.json", order)
-      .then(response => this.setState({loading: false, purchasing: false}))
-      .catch(err => this.setState({loading: false, purchasing: false}));
+   
+    const queryParams = [];
+    for ( let i in this.state.ingredient) {
+      queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredient[i]));
+    }
+    queryParams.push('price=' + this.state.totalPrice)
+    const queryString = queryParams.join('&');
+    this.props.history.push({
+      pathname: '/checkout',
+      search: '?' + queryString
+    });
   };
   render() {
     const disabledInfo = { ...this.state.ingredient };
