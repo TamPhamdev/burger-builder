@@ -24,3 +24,8 @@
   outline: none;
   background-color: #ccc;
 }
+
+.Invalid {
+  border: .6px solid red;
+  background-color: salmon;
+}
