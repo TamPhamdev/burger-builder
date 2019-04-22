@@ -6,7 +6,7 @@ const Input = props => {
   if (props.invalid && props.shouldValidate && props.touched) {
     inputClasses.push(classes.Invalid);
   }
-
+// check types of input elements
   switch (props.elementType) {
     case "input":
       inputElement = (
@@ -35,7 +35,7 @@ const Input = props => {
           value={props.value}
           onChange={props.changed}
         >
-          {props.elementConfig.options.map(option => (
+          {props.elementConfig.options.map(option => (  
             <option key={option.value} value={option.value}>
               {option.displayValue}
             </option>
@@ -52,6 +52,8 @@ const Input = props => {
         />
       );
   }
+ 
+  // return input element
   return (
     <div className={classes.Input}>
       <label className={classes.Label}>

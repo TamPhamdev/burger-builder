@@ -53,7 +53,12 @@ class ContactData extends Component {
           type: "text",
           placeholder: "Street"
         },
-        value: ""
+        value: "",
+        validation: {
+          required: true
+        },
+        valid: false,
+        touched: false
       },
       zipCode: {
         elementType: "input",
@@ -78,7 +83,8 @@ class ContactData extends Component {
             { value: "cheapest", displayValue: "Cheapest" }
           ]
         },
-        value: "",
+        value: "fastest",
+        validation: {},
         valid: true
       }
     },
@@ -111,7 +117,10 @@ class ContactData extends Component {
 
   checkValidity(value, rules) {
     let isValid = true;
-
+    // remove required of Select
+    if (!rules) {
+      return true;
+    }
     if (rules.required) {
       isValid = value.trim() !== "" && isValid;
     }
@@ -134,6 +143,7 @@ class ContactData extends Component {
     const updatedFormElement = {
       ...updatedOrderForm[inputIdentifier]
     };
+    // update element is valid
     updatedFormElement.value = e.target.value;
     updatedFormElement.valid = this.checkValidity(
       updatedFormElement.value,
@@ -141,7 +151,7 @@ class ContactData extends Component {
     );
     updatedFormElement.touched = true;
     updatedOrderForm[inputIdentifier] = updatedFormElement;
-
+    // check form is Valid or not
     let formIsValid = true;
     for (let inputIdentifier in updatedOrderForm) {
       formIsValid = updatedOrderForm[inputIdentifier].valid && formIsValid;
@@ -170,7 +180,11 @@ class ContactData extends Component {
             changed={event => this.inputChangedHandler(event, formElement.id)}
           />
         ))}
-        <Button btnType="Success" clicked={this.orderHandler} disabled={!this.state.formIsValid}>
+        <Button
+          btnType="Success"
+          clicked={this.orderHandler}
+          disabled={!this.state.formIsValid}
+        >
           Order
         </Button>
       </form>
